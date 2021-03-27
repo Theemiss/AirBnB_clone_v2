@@ -115,16 +115,64 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
-        if not args:
+        args = args.split()
+        if not args[0]:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+        new_instance = HBNBCommand.classes[args[0]]()
+        storage.save()
+        t = args[0]
+        key = t + "." + new_instance.id
+        args.pop(0)
+        dictt = self.__convert(args)
+        storage.save()
+        r = storage.all()[key]
+        
+        r.__dict__.update(dictt)
+
         storage.save()
         print(new_instance.id)
-        storage.save()
+
+        
+    @classmethod
+    def __convert(self, ar):
+        def isfloat(value):
+            try:
+                float(value)
+                return True
+            except ValueError:
+                return False
+
+        def listToString(s):
+            str1 = " " 
+            return (str1.join(s))
+        ar = listToString(ar)
+        arr = ar.replace("=",' ').split()
+        av = []
+        a_n = []
+        for x in range(0,len(arr),2):
+            a_n.append(arr[x])
+        for x in range(1,len(arr),2):
+            av.append(arr[x])
+        dictt = dict(zip(a_n,av))
+        for x,v in dictt.items():
+            r = v.replace("_"," ")
+            dictt[x] = r
+        for x,v in dictt.items():
+            if v.isdigit():
+                r = int(v)
+                dictt[x] = r
+            if isfloat(v) and "." in v:
+                r = float(v)
+                dictt[x] = r
+        for x,v in dictt.items():
+            if type(v) is str:
+                r  = v.replace("\"","")
+                dictt[x] = r
+        return(dictt)
 
     def help_create(self):
         """ Help information for the create method """
