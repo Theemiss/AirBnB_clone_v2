@@ -7,8 +7,7 @@ from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-
-class State(BaseModel,Base):
+class State(BaseModel, Base):
     """ State class """
     if models.storage_type == "db":
         __tablename__ = "states"
@@ -17,7 +16,7 @@ class State(BaseModel,Base):
     else:
         name = ""
 
-    def __init__(self,*args,**kwargs):
+    def __init__(self, *args, **kwargs):
         """
         """
-        super().__init__(*args,**kwargs)
+        super().__init__(*args, **kwargs)

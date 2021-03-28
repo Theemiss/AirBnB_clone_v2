@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 
-class City(BaseModel,Base):
+class City(BaseModel, Base):
     """ The city class, contains state ID and name """
     if models.storage_type == "db":
         __tablename__ = 'cities'
@@ -21,5 +21,4 @@ class City(BaseModel,Base):
     def __init__(self, *args, **kwargs):
         """
         """
-        super().__init__(*args,**kwargs)
-
+        super().__init__(*args, **kwargs)
