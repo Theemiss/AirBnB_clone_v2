@@ -17,9 +17,9 @@ else:
 class BaseModel:
     """A base class for all hbnb models"""
     if models.storage_type == "db":
-        id = Column(String(60), primary_key=True)
-        created_at = Column(DateTime, default=datetime.utcnow)
-        updated_at = Column(DateTime, default=datetime.utcnow)
+        id = Column(String(60), primary_key=True, nullable=False)
+        created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+        updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     def __init__(self, *args, **kwargs):
         """
@@ -78,5 +78,6 @@ class BaseModel:
 
     def delete(self):
         """
+            purge the object from storage
         """
         models.storage.delete(self)
