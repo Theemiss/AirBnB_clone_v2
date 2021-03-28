@@ -6,7 +6,7 @@ from datetime import datetime
 import sqlalchemy
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
-
+time = "%Y-%m-%dT%H:%M:%S.%f"
 
 if models.storage_type == "db":
     Base = declarative_base()
@@ -40,7 +40,7 @@ class BaseModel:
             for key, val in kwargs.items():
                 if key in ("created_at", "updated_at"):
                     val = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+                                            '%Y-%m-%dT%H:%M:%S.%f')
                 if "__class__" not in key:
                     setattr(self, key, val)
 
@@ -62,19 +62,16 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """
-            convert  self dict and other public instance
-                Return: Dictionary
-        """
-        dic = dict(self.__dict__)
-        dic['__class__'] = self.__class__.__name__
-        dic['updated_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        dic['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        try:
-            del dic['_sa_instance_state']
-        except:
-            pass
-        return dic
+        """returns a dictionary containing all keys/values of the instance"""
+        new_dict = self.__dict__.copy()
+        if "created_at" in new_dict:
+            new_dict["created_at"] = new_dict["created_at"].strftime(time)
+        if "updated_at" in new_dict:
+            new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        return new_dict
 
     def delete(self):
         """

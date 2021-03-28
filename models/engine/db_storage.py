@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-model to mange DB storage using sqlAlchemy 
+model to mange DB storage using sqlAlchemy
 """
 import models
 from models.amenity import Amenity
@@ -27,7 +27,7 @@ class DBStorage:
 
     def __init__(self):
         """
-            Init __engine based on the Enviroment 
+            Init __engine based on the Enviroment
         """
         HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
         HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
@@ -81,6 +81,7 @@ class DBStorage:
 
     def reload(self):
         """
+            create table in database
         """
         Base.metadata.create_all(self.__engine)
         session_db = sessionmaker(bind=self.__engine, expire_on_commit=False)
@@ -91,5 +92,4 @@ class DBStorage:
         """
             Closing the session
         """
-        self.reload()
         self.__session.close()
