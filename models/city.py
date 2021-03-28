@@ -20,5 +20,6 @@ class City(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         """
+            Init for inherited
         """
         super().__init__(*args, **kwargs)

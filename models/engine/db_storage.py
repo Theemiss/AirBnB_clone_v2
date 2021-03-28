@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """
+model to mange DB storage using sqlAlchemy 
 """
 import models
 from models.amenity import Amenity
@@ -17,6 +18,8 @@ from os import getenv
 
 class DBStorage:
     """
+        This class manage DB storage for AirBnb
+        Clone using sqlAlchemy
     """
     __engine = None
     __session = None
@@ -24,7 +27,7 @@ class DBStorage:
 
     def __init__(self):
         """
-
+            Init __engine based on the Enviroment 
         """
         HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
         HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
@@ -59,16 +62,19 @@ class DBStorage:
 
     def new(self, obj):
         """
+            Creating new instance in db storage
         """
         self.__session.add(obj)
 
     def save(self):
         """
+            save to the db storage
         """
         self.__session.commit()
 
     def delete(self, obj=None):
         """
+            Delete obj from db storage
         """
         if obj is not None:
             self.__session.delete(obj)
@@ -83,6 +89,7 @@ class DBStorage:
 
     def close(self):
         """
+            Closing the session
         """
         self.reload()
         self.__session.close()
