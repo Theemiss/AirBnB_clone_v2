@@ -5,7 +5,11 @@ import models
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey, Integer, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationshipi
+from sqlalchemy import Table
+from os import getenv
+
+
 
 
 class Place(BaseModel, Base):
@@ -25,6 +29,7 @@ class Place(BaseModel, Base):
     amenities = relationship("Amenity", secondary="place_amenity",
                              viewonly=False)
     amenity_ids = []
+
 
     def __init__(self, *args, **kwargs):
         """initializes Place"""
