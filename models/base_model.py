@@ -6,12 +6,7 @@ from datetime import datetime
 import sqlalchemy
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
-time = "%Y-%m-%dT%H:%M:%S.%f"
-
-if models.storage_type == "db":
-    Base = declarative_base()
-else:
-    Base = object
+Base = declarative_base()
 
 
 class BaseModel:
@@ -76,9 +71,11 @@ class BaseModel:
             pass
         new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
-            new_dict["created_at"] = new_dict["created_at"].strftime(time)
+            new_dict["created_at"] = new_dict["created_at"].strftime(
+                '%Y-%m-%dT%H:%M:%S.%f')
         if "updated_at" in new_dict:
-            new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
+            new_dict["updated_at"] = new_dict["updated_at"].strftime(
+                '%Y-%m-%dT%H:%M:%S.%f')
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
