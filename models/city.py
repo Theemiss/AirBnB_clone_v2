@@ -16,7 +16,6 @@ class City(BaseModel, Base):
     state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
     places = relationship("Place", backref="cities")
 
-
     def __init__(self, *args, **kwargs):
         """
             Init for inherited
