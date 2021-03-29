@@ -39,7 +39,7 @@ class BaseModel:
                     by adding it to method that change object like save
         """
         self.id = str(uuid4())
-        self.created_at = datetime.now()
+        self.created_at = datetime.utcnow()
         self.updated_at = self.created_at
         # each new instance created is added to the storage variable __objects
         if kwargs:
@@ -64,7 +64,7 @@ class BaseModel:
         """
             for now just update update_at
         """
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.utcnow()
         # only when we save the instance, its writen into the json file
         models.storage.new(self)
         models.storage.save()
