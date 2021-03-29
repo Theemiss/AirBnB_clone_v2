@@ -18,8 +18,14 @@ class BaseModel:
     """A base class for all hbnb models"""
     if models.storage_type == "db":
         id = Column(String(60), primary_key=True, nullable=False)
-        created_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
-        updated_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
+        created_at = Column(DateTime,
+                            default=datetime.utcnow(),
+                            nullable=False
+                            )
+        updated_at = Column(DateTime,
+                            default=datetime.utcnow(),
+                            nullable=False
+                            )
 
     def __init__(self, *args, **kwargs):
         """
@@ -49,8 +55,10 @@ class BaseModel:
         print the instance
         :return:
         """
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
-                                         self.__dict__)
+        dictt = self.to_dict()
+        cls = str(type(self)).split('.')[-1].split('\'')[0]
+        return "[{:s}] ({:s}) {}".format(cls, self.id,
+                                         dictt)
 
     def save(self):
         """
@@ -63,6 +71,10 @@ class BaseModel:
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of the instance"""
+        try:
+            del self.__dict__['_sa_instance_state']
+        except Exception:
+            pass
         new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
             new_dict["created_at"] = new_dict["created_at"].strftime(time)
