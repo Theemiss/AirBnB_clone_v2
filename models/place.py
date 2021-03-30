@@ -14,7 +14,7 @@ from models.review import Review
 
 association_table = Table("place_amenity", Base.metadata,
                           Column("place_id", String(60),
-                                 ForeignKey("place.id"),
+                                 ForeignKey("places.id"),
                                  primary_key=True, nullable=False),
                           Column("amenity_id", String(60),
                                  ForeignKey("amenities.id"),
@@ -34,16 +34,16 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
-    review = relationship("Review", backref="place", cascade="delete")
+    reviews = relationship("Review", backref="place", cascade="delete")
     amenities = relationship("Amenity", secondary="place_amenity",
-                             viewonly=False)
+                             viewonly=True)
     amenity_ids = []
 
     def __init__(self, *args, **kwargs):
         """initializes Place"""
         super().__init__(*args, **kwargs)
 
-    if getenv("HBNB_TYPE_STORAGE", None) != "db":
+    if models.storage_type != "db":
         @property
         def reviews(self):
             """Get a list of all Reviews"""
