@@ -5,7 +5,7 @@ import models
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey, Integer, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationshipi
+from sqlalchemy.orm import relationship
 from sqlalchemy import Table
 from os import getenv
 from models.amenity import Amenity
