@@ -8,8 +8,17 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationshipi
 from sqlalchemy import Table
 from os import getenv
+from models.amenity import Amenity
+from models.review import Review
 
 
+association_table = Table("place_amenity", Base.metadata,
+                          Column("place_id", String(60),
+                                 ForeignKey("place.id"),
+                                 primary_key=True, nullable=False),
+                          Column("amenity_id", String(60),
+                                 ForeignKey("amenities.id"),
+                                 primary_key=True, nullable=False))
 
 
 class Place(BaseModel, Base):
@@ -30,7 +39,30 @@ class Place(BaseModel, Base):
                              viewonly=False)
     amenity_ids = []
 
-
     def __init__(self, *args, **kwargs):
         """initializes Place"""
         super().__init__(*args, **kwargs)
+
+    if getenv("HBNB_TYPE_STORAGE", None) != "db":
+        @property
+        def reviews(self):
+            """Get a list of all Reviews"""
+            reviewlist = []
+            for review in list(models.storage.all(Review).values()):
+                if review.place_id == self.id:
+                    reviewlist.append(review)
+            return reviewlist
+
+        @property
+        def amenities(self):
+            """ Get Linked Amenities"""
+            amenitylist = []
+            for amenity in list(models.storage.all(Amenity).values()):
+                if amenity.id in self.amenity_ids:
+                    amenitylist.append(amenity)
+            return amenitylist
+
+        @amenities.setter
+        def amenities(self, value):
+            if type(value) == Amenity:
+                self.amenity_ids.append(value.id)
