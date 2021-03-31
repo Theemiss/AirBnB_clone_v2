@@ -12,7 +12,7 @@ This repository contains the initial stage of a student project to build a clone
 | ----- | ----- | ------ |
 | N/A: Authors | [AUTHORS](https://github.com/Theemiss/AirBnB_clone_v2/blob/master/AUTHORS) | Project authors |
 | 0: README File| [README.md](https://github.com/Theemiss/AirBnB_clone_v2/blob/master/README.md) | Read Me file
-| 1: Pep8 | N/A | All code is pep8 compliant|
+| N/A: Pep8 | N/A | All code is pep8 compliant|
 | 2: Unit Testing | [/tests](https://github.com/Theemiss/AirBnB_clone_v2/tree/master/tests) | All class-defining modules are unittested |
 | 3. Make BaseModel | [/models/base_model.py](https://github.com/Theemiss/AirBnB_clone_v2/blob/master/models/base_model.py) | Defines a parent class to be inherited by all model classes|
 | 4. Update BaseModel w/ kwargs | [/models/base_model.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/base_model.py) | Add functionality to recreate an instance of a class from a dictionary representation|
