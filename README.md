@@ -166,8 +166,8 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 No known bugs at this time. 
 
 ## Authors
-Alexa Orrico - [Github](https://github.com/Theemiss)
-Jennifer Huang - [Github](https://github.com/aminbnd)
+Ahmed Belhaj - [Github](https://github.com/Theemiss)
+Mohamed Amin Bondi - [Github](https://github.com/aminbnd)
 
 <br>
 <img src="https://www.holbertonschool.com/holberton-logo.png">
