@@ -169,4 +169,4 @@ Ahmed Belhaj - [Github](https://github.com/Theemiss)
 Mohamed Amin Bondi - [Github](https://github.com/aminbnd)
 
 <br>
-<img src="https://www.holbertonschool.com/holberton-logo.png">
+<center><img src="https://www.holbertonschool.com/holberton-logo.png"></center>
