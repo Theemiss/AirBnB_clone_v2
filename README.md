@@ -1,11 +1,28 @@
-## Must READ: 
-* Unitest needed , some requirment not working , no documentation pep8 done README Modefied 
 <center> <h1>HBNB - The Console</h1> </center>
 
+## Descreption:
 This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
 
 ---
+# AirBnB clone
+<p align="center"><img src="bnb.png" alt="AirBnb  logo"></p>
 
+
+## Installation
+* Clone This Repo `git clone https://github.com/salahbesbes/AirBnB_clone.git`
+* Access AirBnb directory: `cd AirBnB_clone`
+* Run hbnb(interactively): `./console` and enter command
+* Run hbnb(non-interactively): `echo "<command>" | ./console.py`
+
+## Available Command:
+* quit and EOF to exit the program
+* help for every Command
+* create 
+* show
+* destroy
+* all
+* update
+* count
 <center><h3>Repository Contents by Project Task</h3> </center>
 
 | Tasks | Files | Description |
@@ -29,7 +46,7 @@ This repository contains the initial stage of a student project to build a clone
 
 1. First clone this repository.
 
-3. Once the repository is cloned locate the "console.py" file and run it as follows:
+2. Once the repository is cloned locate the "console.py" file and run it as follows:
 ```
 /AirBnB_clone$ ./console.py
 ```
@@ -143,5 +160,14 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) User.all()
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
+
+
+## Bugs
+No known bugs at this time. 
+
+## Authors
+Alexa Orrico - [Github](https://github.com/Theemiss)
+Jennifer Huang - [Github](https://github.com/aminbnd)
+
 <br>
 <img src="https://www.holbertonschool.com/holberton-logo.png">
