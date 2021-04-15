@@ -16,7 +16,7 @@ package { 'nginx':
 
 service {'nginx':
   ensure  =>  'running',
-  require => file_line['ADDING A LOCATION']
+  require => file_line['LOCATION SETUP']
 }
 
 file { ['/data', '/data/web_static', '/data/web_static/shared', '/data/web_static/releases', '/data/web_static/releases/test'] :
@@ -28,7 +28,7 @@ file { ['/data', '/data/web_static', '/data/web_static/shared', '/data/web_stati
 
 file { '/data/web_static/releases/test/index.html':
   ensure  => 'present',
-  content => 'This is my sample content',
+  content => 'Hello AirBnb',
   require =>  Package['nginx']
 }
 
@@ -38,7 +38,7 @@ file { '/data/web_static/current':
   force  => true
 }
 
-file_line { 'ADDING A LOCATION':
+file_line { 'LOCATION SETUP ':
   ensure  => 'present',
   path    => '/etc/nginx/sites-enabled/default',
   line    => 'location /hbnb_static/ { alias /data/web_static/current/; autoindex off; } location / { ',
