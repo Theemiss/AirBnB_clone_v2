@@ -28,7 +28,7 @@ def C_is(text):
     """
         /C path
     """
-    return 'C is {:s}'.format(text.replace('_', ' '))
+    return 'C {:s}'.format(text.replace('_', ' '))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
