@@ -26,7 +26,7 @@ def index():
 @app.route('/c/<text>', strict_slashes=False)
 def C_is(text):
     """
-        /C path 
+        /C path
     """
     return 'C is {:s}'.format(text.replace('_', ' '))
 
