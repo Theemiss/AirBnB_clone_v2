@@ -29,7 +29,7 @@ def C_is(text):
     """
         C path
     """
-    return 'C is {:s}'.format(text.replace('_', ' '))
+    return 'C {:s}'.format(text.replace('_', ' '))
 
 
 @app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
