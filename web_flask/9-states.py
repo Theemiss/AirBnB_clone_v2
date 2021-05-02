@@ -18,26 +18,21 @@ def teardown_data(self):
 
 
 @app.route('/states', strict_slashes=False)
-def states():
-    """ return all citie in the db  """
-    states = storage.all(State)
-
-    return render_template('8-cities_by_states.html', states=states)
-
-
 @app.route("/states/<id>", strict_slashes=False)
-def states_id(id):
+def states_id(id=None):
     """
         list state by id if found
     """
-    states = storage.all(State).values()
-    for x in states:
-        if x.id == id:
-            found = x
-            break
-        else:
-            found = None
-    return render_template('9-states.html', state=found)
+    info = []
+    states = storage.all(State)
+    if id is None:
+        for k in states:
+            info.append(states[k])
+    else:
+        id = 'State.' + id
+        info = states.get(id)
+    return render_template('9-states.html', states=info, id=id)
+    return render_template('9-states.html', state=id)
 
 
 if __name__ == "__main__":
