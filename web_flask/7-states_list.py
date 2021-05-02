@@ -18,13 +18,10 @@ def teardown_data(self):
 
 @app.route('/states_list', strict_slashes=False)
 def states_list():
-    """
-        list state
-    """
-    data_state = storage.all(State)
-    states = []
-    for i in data_state:
-        states.append(data_state)
+    """ return all states in the db  """
+    states = storage.all(State)
     return render_template('7-states_list.html', states=states)
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
